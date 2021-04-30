@@ -38,7 +38,6 @@ def get_file(path):
 
 def make_points(r):
     tags = {"sensor": r["sensor"]}
-    # iso_time = r["iso_time"]
     my_date = datetime.now()
     iso_time = my_date.isoformat()
     points = []
@@ -52,13 +51,14 @@ def make_points(r):
       }
      })
 
-    points.append({
-      "measurement": "cpu_temp",
-      "tags":  tags,
-      "time": iso_time,
-      "fields": {
-        "value": float(r["cpu_temperature"])
-      }
+    if "cpu_temp" in r:
+        points.append({
+          "measurement": "cpu_temp",
+          "tags":  tags,
+          "time": iso_time,
+          "fields": {
+            "value": float(r["cpu_temperature"])
+          }
      })
 
     if "humidity" in r:
