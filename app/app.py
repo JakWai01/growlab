@@ -2,9 +2,9 @@
 
 import json
 import os, sys
-from sensors import growbme280
+# from sensors import growbme280
 from camera import camera
-from specimen import specimen
+# from specimen import specimen
 
 if __name__ == "__main__":
     print("Starting growlab")
@@ -19,10 +19,10 @@ if __name__ == "__main__":
 
     print("Loaded config, saving images every {} seconds to {}".format( config["images"]["interval_seconds"], config["images"]["output_directory"]))
 
-    bme280 = growbme280()
+   #   bme280 = growbme280()
 
-    readings = bme280.get_readings()
-    print(readings)
+    # readings = bme280.get_readings()
+   #  print(readings)
 
     cam = camera(config["images"])
     frame = cam.get_frame()
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     except:
        pass
 
-    spec = specimen(config["text"], config["images"])
-    spec.save_image("{}/image.jpg".format(pwd), frame, readings)
+#     spec = specimen(config["text"], config["images"])
+ #    spec.save_image("{}/image.jpg".format(pwd), frame)
 
-    spec.save_html("{}/image.jpg".format(pwd), output_path, readings)
+  #   spec.save_html("{}/image.jpg".format(pwd), output_path)

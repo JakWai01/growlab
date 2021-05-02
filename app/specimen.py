@@ -7,18 +7,16 @@ class specimen:
         self.text_config = text_config
         self.image_config = image_config
 
-    def save_image(self, filename, image, readings):
+    def save_image(self, filename, image):
         with open(filename, 'wb') as file:
             file.write(image.getvalue())
-
-        msg = self.format(readings)
 
         img = Image.open(filename, "r").convert("RGBA")
         img_draw = ImageDraw.Draw(img)
         font = ImageFont.truetype('roboto/Roboto-Regular.ttf', self.text_config["size"])
         colour = (self.text_config["colour"]["red"] ,self.text_config["colour"]["green"], self.text_config["colour"]["blue"])
 
-        text_size = img_draw.textsize(msg, font)
+        text_size = img_draw.textsize(font)
 
         pos = (10, 20)
         bg_size = (text_size[0]+30, text_size[1]+50)
